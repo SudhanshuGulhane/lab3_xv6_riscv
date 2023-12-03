@@ -7,6 +7,16 @@
 #include "proc.h"
 
 uint64
+sys_clone(void)
+{
+  uint64 stack;
+  int size;
+  argaddr(0, &stack);
+  argint(1, &size);
+  return clone((void* ) stack);
+}
+
+uint64
 sys_exit(void)
 {
   int n;
