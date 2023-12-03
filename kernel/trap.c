@@ -128,8 +128,8 @@ usertrapret(void)
   // uint64 trampoline_userret = TRAMPOLINE + (userret - trampoline);
   // ((void (*)(uint64))trampoline_userret)(satp);
 
-  uint64 new_trampoline_userret_for_threads = TRAMPOLINE + (userret - trampoline);
-  ((void (*)(uint64,uint64))new_trampoline_userret_for_threads)(TRAPFRAME - (PGSIZE * p->tid), satp);
+  uint64 trampoline_userret = TRAMPOLINE + (userret - trampoline);
+  ((void (*)(uint64,uint64))trampoline_userret)(TRAPFRAME - (PGSIZE * p->tid), satp);
 }
 
 // interrupts and exceptions from kernel code go here via kernelvec,
